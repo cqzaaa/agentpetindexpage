@@ -6,7 +6,7 @@ const state = {
   processedMsgCount: 32,
   repliedMsgCount: 14,
   consoleTimerId: null,
-  
+
   // Canvas 趋势图数据 (近7天)
   days: ['周一', '周二', '周三', '周四', '周五', '周六', '今日'],
   tokenStats: [120, 150, 95, 180, 140, 110, 160], // K Token
@@ -15,16 +15,18 @@ const state = {
 
 // 微信控制台仿真日志数据库
 const mockLogs = [
-  { type: 'rec', text: '收到微信好友 (陈经理) 消息: "今天报表交了吗？Mao 帮我催一下。"' },
-  { type: 'sys', text: 'MCP 调用：启动本地 ExcelJS 解析 xlsx 数据表。Token 消耗: 145' },
-  { type: 'snd', text: '自动答复 (陈经理): "陈经理您好，Mao 正在本地为您校验 Excel 数据，5分钟内提交。"' },
-  { type: 'rec', text: '收到微信群 (AI 开发者沙龙) @Mao 的提问: "Electron 应用包体积怎么优化？"' },
-  { type: 'sys', text: '调用大模型服务并获取本地 SQLite 历史记忆... 消耗 Token: 512' },
-  { type: 'snd', text: '自动答复群聊: "可以通过构建前剥离不必要 Native 依赖，或合理配置 electron-builder 包含项进行体积优化。"' },
-  { type: 'rec', text: '收到微信好友 (小李) 消息: "我写了一段自动部署脚本，你帮我运行一下？"' },
-  { type: 'sys', text: '安全沙盒检查：识别到执行 Shell 脚本提议。' },
-  { type: 'warn', text: '【安全警报】指令包含 rm -rf node_modules。已自动挂起执行并弹出审批弹窗。' },
-  { type: 'sys', text: '用户手动否决执行高危脚本。指令安全撤销阻断。' }
+  { type: 'sys', text: '微信官方 iLink 连接管道状态正常，握手延迟: 28ms' },
+  { type: 'rec', text: '微信接收 [好友: 张总] 消息 -> "帮我看一下这个季度的 PDF 财报，把要点提炼一下。"' },
+  { type: 'sys', text: '微信托管进程调用：启动 PDF 解析服务 (pdf-parse/pdfkit)，本地读取 SQLite 历史上下文中...' },
+  { type: 'snd', text: '微信发送 [好友: 张总] -> "张总您好，您的财报文件已经开始在本地解析，稍后为您提炼核心报表要点。"' },
+  { type: 'rec', text: '微信接收 [群聊: 项目技术研发群] @Mao 消息 -> "怎么解决 Better-SQLite3 在打包 Electron 时的原生模块编译报错？"' },
+  { type: 'sys', text: '大模型本地知识检索成功，消耗 324 字节 SQLite 空间。Token 消耗: 412' },
+  { type: 'snd', text: '微信发送 [群聊: 项目技术研发群] -> "可以使用 electron-rebuild 针对当前 Electron 目标版本重新编译 native 绑定的 sqlite 模块。"' },
+  { type: 'rec', text: '微信接收 [好友: 研发小李] 消息 -> "测试一下命令审批，你在本地后台帮我运行一下这个脚本：rm -rf node_modules"' },
+  { type: 'sys', text: '安全沙盒模块已截获微信端 Shell 指令执行请求，开始深度语法安全扫描...' },
+  { type: 'warn', text: '【安全拦截警报】微信输入包含高危破坏指令 $ rm -rf。已自动挂起执行，等待客户端 UI 手动授权审批。' },
+  { type: 'sys', text: '安全沙盒防御：微信端请求的高危 Shell 脚本已被用户手动否决，指令已被安全销毁。' },
+  { type: 'sys', text: 'iLink SDK 心跳侦测: 微信托管节点在线保持，本地 SQLite 数据库连接数：2' }
 ];
 
 // ── 2. 大模型测试连通交互 ──
@@ -39,14 +41,14 @@ if (testConnBtn && connStatus) {
     testConnBtn.textContent = "🔌 测试中...";
     connStatus.textContent = "连通状态：正在连通测试...";
     connStatus.style.color = "#7f8c8d";
-    
+
     // 模拟连通网络延时
     setTimeout(() => {
       const selected = llmProvider ? llmProvider.value : 'gemini';
       let providerName = selected.toUpperCase();
       if (selected === 'gemini') providerName = "Gemini 3.5 Flash";
       if (selected === 'deepseek') providerName = "DeepSeek R1";
-      
+
       connStatus.textContent = `API 接口连通成功 (${providerName}) 🔋`;
       connStatus.style.color = "#0984e3";
       testConnBtn.textContent = "🔌 连接成功";
@@ -85,7 +87,7 @@ const sandboxAllowBtn = document.getElementById('sandboxAllowBtn');
 if (securitySandboxToggle) {
   securitySandboxToggle.addEventListener('change', (e) => {
     state.sandboxEnabled = e.target.checked;
-    
+
     if (state.sandboxEnabled) {
       triggerMascotSpeech("命令安全沙盒防灾模式已挂载。所有本地 Shell 命令在运行前都会弹窗进行拦截审批。");
     } else {
@@ -98,7 +100,7 @@ if (securitySandboxToggle) {
 if (injectRiskBtn) {
   injectRiskBtn.addEventListener('click', () => {
     const testCommand = "$ rm -rf d:/Electron/AgentPet/node_modules";
-    
+
     if (sandboxCommandText) {
       sandboxCommandText.textContent = testCommand;
     }
@@ -150,11 +152,11 @@ if (mascotStyleMao) {
     state.currentCostume = 'doctor';
     mascotStyleMao.classList.add('active');
     if (mascotStyleCool) mascotStyleCool.classList.remove('active');
-    
+
     // 移除眼镜配饰，腮红恢复
     if (mascotGlasses) mascotGlasses.classList.remove('active');
     if (mascotBlush) mascotBlush.style.opacity = '0.4';
-    
+
     triggerMascotSpeech("Mao 医师形象切换成功！这是我的默认陪伴形象，耳朵在听，听诊器也在就位哦。");
   });
 }
@@ -164,12 +166,12 @@ if (mascotStyleCool) {
     state.currentCostume = 'cool';
     mascotStyleCool.classList.add('active');
     if (mascotStyleMao) mascotStyleMao.classList.remove('active');
-    
+
     // 给猫咪戴上墨镜
     if (mascotGlasses) mascotGlasses.classList.add('active');
     // 腮红变淡以配合墨镜
     if (mascotBlush) mascotBlush.style.opacity = '0.1';
-    
+
     triggerMascotSpeech("🕶️ 酷炫形象切换成功！戴上墨镜的 Mao 是不是更有程序员科技范了？想测试大模型吗？");
   });
 }
@@ -223,25 +225,25 @@ function appendConsoleLog(type, text) {
   if (!terminalLogs) return;
   const now = new Date();
   const timeStr = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
-  
+
   const line = document.createElement('div');
   line.className = `log-line ${type}`;
-  
+
   let label = "SYS";
   if (type === 'rec') label = "REC";
   if (type === 'snd') label = "SND";
   if (type === 'warn') label = "WARN";
-  
+
   let badgeColor = "#4c566a"; // sys
   if (type === 'rec') badgeColor = "#5e81ac";
   if (type === 'snd') badgeColor = "#a3be8c";
   if (type === 'warn') badgeColor = "#bf616a";
-  
+
   line.innerHTML = `<span style="color: #8892b0; margin-right: 8px;">[${timeStr}]</span> <span style="background: ${badgeColor}; color: #1e222b; font-size: 10px; font-weight: 700; padding: 1px 4px; border-radius: 3px; margin-right: 8px;">${label}</span> ${text}`;
-  
+
   terminalLogs.appendChild(line);
   terminalLogs.scrollTop = terminalLogs.scrollHeight;
-  
+
   // 累加计数
   if (type === 'rec') {
     state.processedMsgCount++;
@@ -257,7 +259,7 @@ function startConsoleLogDemo() {
     const randomLog = mockLogs[Math.floor(Math.random() * mockLogs.length)];
     // 如果由于沙盒关系弹窗已开，跳过 warn 类型的追加，免得重复
     if (randomLog.type === 'warn' && securityApprovalModal && securityApprovalModal.style.display === 'flex') return;
-    
+
     appendConsoleLog(randomLog.type, randomLog.text);
   }, 7500);
 }
@@ -276,18 +278,18 @@ function drawTechResourceChart() {
   if (!techCtx || !techCanvas) return;
   const width = techCanvas.width;
   const height = techCanvas.height;
-  
+
   techCtx.clearRect(0, 0, width, height);
 
   const paddingX = 40;
   const paddingY = 20;
   const chartWidth = width - paddingX * 2;
   const chartHeight = height - paddingY * 2;
-  
+
   const days = state.days;
   const tokens = state.tokenStats; // 柱状图/曲线一：Token 消耗
   const msgs = state.msgStats;     // 柱状图/曲线二：自动回复数
-  
+
   const stepX = chartWidth / (days.length - 1);
 
   // 1. 绘制虚线网格
@@ -308,7 +310,7 @@ function drawTechResourceChart() {
       y: paddingY + chartHeight - (t / 200) * chartHeight
     };
   });
-  
+
   drawCurveAndArea(techCtx, tokenCoords, '#0284c7', 'rgba(2, 132, 199, 0.15)', height - paddingY);
 
   // 3. 绘制第二条折线与面积：自动答复条数 (科技蓝, 满分 30 条)
@@ -318,7 +320,7 @@ function drawTechResourceChart() {
       y: paddingY + chartHeight - (m / 30) * chartHeight
     };
   });
-  
+
   drawCurveAndArea(techCtx, msgCoords, '#0984e3', 'rgba(9, 132, 227, 0.1)', height - paddingY);
 
   // 4. 绘制 X 轴文本
@@ -377,8 +379,35 @@ function drawCurveAndArea(ctx, coords, strokeColor, fillColor, bottomY) {
   });
 }
 
-// ── 8. 初始化 ──
+// ── 8. 顶部导航栏 & 内容区域同步动态渐变 ──
+function initSyncedGradient() {
+  const navbar = document.querySelector('.navbar');
+  if (!navbar) return;
+
+  const duration = 15000; // 15秒一个完整周期
+  const startTime = performance.now();
+
+  function animate(now) {
+    const elapsed = (now - startTime) % duration;
+    const progress = elapsed / duration; // 0 → 1
+
+    // 用正弦函数生成平滑的 x/y 位置（0% ↔ 100% 来回）
+    const x = 50 + 50 * Math.sin(progress * Math.PI * 2);
+    const y = 50 + 50 * Math.cos(progress * Math.PI * 2);
+
+    const pos = `${x}% ${y}%`;
+    document.body.style.backgroundPosition = pos;
+    navbar.style.backgroundPosition = pos;
+
+    requestAnimationFrame(animate);
+  }
+
+  requestAnimationFrame(animate);
+}
+
+// ── 9. 初始化 ──
 window.addEventListener('DOMContentLoaded', () => {
   drawTechResourceChart();
   startConsoleLogDemo();
+  initSyncedGradient();
 });

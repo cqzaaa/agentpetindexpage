@@ -28,12 +28,12 @@
         <span class="badge">Electron AI</span>
       </div>
       <ul class="nav-links">
-        <li><a href="#features">功能参数</a></li>
-        <li><a href="#sandbox">客户端沙盒</a></li>
-        <li><a href="#console-logs">托管日志</a></li>
-        <li><a href="#tech-stack">技术架构</a></li>
+        <li><a href="#features">功能介绍</a></li>
+        <li><a href="#tech-stack">技术框架</a></li>
+        <li><a href="#integration-service">集成服务</a></li>
+        <li><a href="#quick-experience">快速体验</a></li>
       </ul>
-      <a href="#download" class="btn btn-primary btn-sm soft-btn">立即下载</a>
+      <a href="#quick-experience" class="btn btn-primary btn-sm soft-btn">立即下载</a>
     </div>
   </nav>
 
@@ -51,7 +51,7 @@
           虚拟体陪伴与语音互动，更能集成微信飞书等代理 24H 消息回复、动态调用 MCP 服务、四层记忆沉淀机制，办公报表自动化处理等；所有聊天数据保存在本地 SQLite，数据本地存储。
         </p>
         <div class="hero-buttons">
-          <a href="#download" class="btn btn-primary soft-btn">
+          <a href="#quick-experience" class="btn btn-primary soft-btn">
             <svg class="btn-icon" viewBox="0 0 24 24">
               <path fill="currentColor"
                 d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10s10-4.49 10-10S17.51 2 12 2zm1 10h3l-4 4l-4-4h3V8h2v4z" />
@@ -105,14 +105,200 @@
       </div>
     </section>
 
-    <!-- 可视化交互沙盒模拟客户端 (Interactive Sandbox) -->
-    <section class="sandbox-section" id="sandbox">
+    <!-- 五大硬核功能卡片 (Core Features) -->
+    <section class="features-section" id="features">
       <div class="section-header">
-        <span class="section-tag soft-card">INTERACTIVE SANDBOX</span>
-        <h2 class="section-title">交互式 Electron 客户端沙盒模拟</h2>
-        <p class="section-desc">直接在浏览器中预览 AgentPet 桌面端的真实控制逻辑：测试大模型连接、切换 Live2D 形象或尝试注入终端命令以触发沙盒拦截审批。</p>
+        <span class="section-tag soft-card">CORE CAPABILITIES</span>
+        <h2 class="section-title">功能介绍：安全有度，高效代劳</h2>
+        <p class="section-desc">AgentPet 拒绝复杂的概念包装，把最硬核的文件处理、后台托管和本地沙盒安全做到极致。</p>
       </div>
 
+      <div class="features-grid">
+        <div class="feature-card soft-card">
+          <div class="feature-icon-wrapper soft-card-in">💬</div>
+          <h3 class="feature-card-title">微信与飞书双端托管</h3>
+          <p class="feature-card-text">
+            集成官方合规的微信 iLink SDK 与飞书网关服务。扫码后，将个人号/群聊变成 AI 答复代理。24H 后台静默流式运行，屏蔽无关信息打扰。
+          </p>
+        </div>
+
+        <div class="feature-card soft-card">
+          <div class="feature-icon-wrapper soft-card-in">🛡️</div>
+          <h3 class="feature-card-title">命令执行安全沙盒</h3>
+          <p class="feature-card-text">
+            首创安全审批沙盒。AI 助理分析本地项目或执行命令前，强行识别拦截破坏性指令（如 rm -rf、删库等），弹出气泡授权审批，安全零隐患。
+          </p>
+        </div>
+
+        <div class="feature-card soft-card">
+          <div class="feature-icon-wrapper soft-card-in">📂</div>
+          <h3 class="feature-card-title">多格式文档一键拖拽解析</h3>
+          <p class="feature-card-text">
+            支持 Word (mammoth/docx)、Excel (exceljs)、PDF (pdfkit/pdf-parse) 文件一键拖拽至宠物窗口。AI 本地自动提炼数据报表及要点总结。
+          </p>
+        </div>
+
+        <div class="feature-card soft-card">
+          <div class="feature-icon-wrapper soft-card-in">🎭</div>
+          <h3 class="feature-card-title">Live2D/3D 模型热拔插</h3>
+          <p class="feature-card-text">
+            采用 PixiJS 与 ThreeJS 双核心渲染。支持一键导入外部 Live2D（`.model3.json`）及 3D 模型，支持设定语言风格，让您的桌面宠物栩栩如生。
+          </p>
+        </div>
+
+        <div class="feature-card soft-card">
+          <div class="feature-icon-wrapper soft-card-in">💾</div>
+          <h3 class="feature-card-title">本地存储与一键数据迁移</h3>
+          <p class="feature-card-text">
+            聊天历史与技能包完全保存在本地 SQLite。支持自定义存储路径并一键迁移至您的特定盘符，数据与隐私完全掌控在您的物理硬盘中。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 底层技术架构栈列表 (Architecture & Tech Stack) -->
+    <section class="tech-stack-section" id="tech-stack">
+      <div class="section-header">
+        <span class="section-tag soft-card">TECHNOLOGY STACK</span>
+        <h2 class="section-title">技术框架：底层硬核技术架构</h2>
+        <p class="section-desc">产品的高效与本地安全，源于底层极其强大的技术组件库。我们毫无保留地向开发者公开核心技术框架栈：</p>
+      </div>
+
+      <div class="tech-stack-grid">
+        <!-- 技术卡片 1 -->
+        <div class="tech-card soft-card">
+          <h3 class="tech-card-title">系统内核与打包</h3>
+          <ul class="tech-list">
+            <li><strong>Electron 39.2</strong>：跨平台桌面框架封装层</li>
+            <li><strong>React 19.2 + TS</strong>：前端交互界面开发</li>
+            <li><strong>Vite 5.0 + Less</strong>：极速编译构建与样式管理</li>
+            <li><strong>Electron-builder</strong>：一键打包 Win/Mac/Linux 客户端</li>
+          </ul>
+        </div>
+
+        <!-- 技术卡片 2 -->
+        <div class="tech-card soft-card">
+          <h3 class="tech-card-title">桌面宠物渲染与连接</h3>
+          <ul class="tech-list">
+            <li><strong>Pixi.js v6</strong>：高性能桌面 Live2D 宠物挂件骨骼渲染</li>
+            <li><strong>Pixi-live2d-display</strong>：外部 Live2D 形象库加载解析</li>
+            <li><strong>Three.js 0.184</strong>：3D 宠物形象与桌面立体场景支持</li>
+            <li><strong>MCP SDK 1.29</strong>：Model Context Protocol 规范连接</li>
+          </ul>
+        </div>
+
+        <!-- 技术卡片 3 -->
+        <div class="tech-card soft-card">
+          <h3 class="tech-card-title">多格式文档解析预览</h3>
+          <ul class="tech-list">
+            <li><strong>ExcelJS + XLSX</strong>：Excel 电子数据表解析与写引擎</li>
+            <li><strong>Mammoth + Docx-preview</strong>：Word 文档提取与本地渲染</li>
+            <li><strong>PDFkit + PDF-parse</strong>：PDF 文件生成、解析与要点提炼</li>
+            <li><strong>PapaParse + JSZip</strong>：CSV 处理与压缩技能包解压</li>
+          </ul>
+        </div>
+
+        <!-- 技术卡片 4 -->
+        <div class="tech-card soft-card">
+          <h3 class="tech-card-title">持久化与微信集成</h3>
+          <ul class="tech-list">
+            <li><strong>Better-SQLite3</strong>：高性能本地 SQL 数据库聊天持久化</li>
+            <li><strong>openilink-sdk-node</strong>：微信合规官方 iLink 连接 SDK</li>
+            <li><strong>ws (WebSocket)</strong>：主进程与桌面挂件进程高速双向通信</li>
+            <li><strong>命令防爆沙盒</strong>：本地自研命令过滤拦截审批机制</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Canvas 模型调用与消息量折线图 -->
+      <div class="chart-box-tech-outer soft-card">
+        <div class="chart-header-tech">
+          <h3 class="chart-title-tech">大模型 Token 消耗及自动答复频次度量</h3>
+          <span class="chart-legend-tech"><span class="legend-dot mint"></span> API 消耗 (K Token) <span
+              class="legend-dot blue"></span> 微信自动答复 (条)</span>
+        </div>
+        <div class="canvas-container-tech soft-card-in">
+          <canvas id="techResourceChart" width="600" height="200"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- 集成服务 (Integration Service) -->
+    <section class="integration-section" id="integration-service">
+      <div class="section-header">
+        <span class="section-tag soft-card">WECHAT INTEGRATION</span>
+        <h2 class="section-title">集成服务：合规微信托管技术</h2>
+        <p class="section-desc">深度解析 AgentPet 微信托管的核心机制：使用微信合规的官方 iLink 连接技术，打通大模型本地流式回复，实现高安全零封号风险的企业级部署。</p>
+      </div>
+
+      <div class="integration-grid">
+        <!-- 微信集成技术亮点 -->
+        <div class="integration-tech-info soft-card">
+          <h3 class="integration-main-title">🛡️ 微信集成核心技术解析</h3>
+          <p class="integration-desc-p">不同于市面上违规且极易被封号的网页版协议或注入式破解方案，AgentPet 采用了绝对安全的官方技术路线：</p>
+          
+          <div class="tech-item-row">
+            <div class="item-icon">⚡</div>
+            <div class="item-body">
+              <h4>微信合规官方 iLink SDK</h4>
+              <p>系统核心通过微信官方提供的 Node 平台连接器 <code>@openilink/openilink-sdk-node</code> 直连，所有数据通过微信专属加密管道传输，绝不篡改客户端，保障您的账号绝对安全。</p>
+            </div>
+          </div>
+
+          <div class="tech-item-row">
+            <div class="item-icon">💾</div>
+            <div class="item-body">
+              <h4>Better-SQLite3 本地存储与多维记忆</h4>
+              <p>微信接收到的所有聊天记录、上下文关联信息及个人隐私配置均采用本地数据库持久化，坚守本地化原则，数据和控制权完全归属用户物理硬盘。</p>
+            </div>
+          </div>
+
+          <div class="tech-item-row">
+            <div class="item-icon">🔒</div>
+            <div class="item-body">
+              <h4>防爆指令沙盒双重过滤</h4>
+              <p>微信远程执行命令支持多级指令阻断审批。若有高危指令试图远程修改或破坏您的项目，主进程安全沙盒立即将其锁定并弹窗审批，杜绝被恶意指令“删库”。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 仿真微信托管控制台 -->
+        <div class="console-box soft-card">
+          <div class="console-panel-header">
+            <div class="window-dots">
+              <span class="dot red"></span>
+              <span class="dot yellow"></span>
+              <span class="dot green"></span>
+            </div>
+            <div class="console-panel-title">wechatBot.ts - 微信 iLink 协议运行日志</div>
+            <div class="console-status">
+              <span class="status-pulse"></span> 协议通信在线
+            </div>
+          </div>
+          <div class="console-terminal soft-card-in" id="terminalLogs">
+            <!-- JS 动态追加日志 -->
+            <div class="log-line sys">[14:10:02] [SYS] WeChat Bot 托管网关服务初始化成功...</div>
+            <div class="log-line sys">[14:10:05] [SYS] 微信扫码成功，设备 (iLink-Bot-Mao) 已绑定在线。</div>
+            <div class="log-line sys">[14:10:08] [SYS] 当前自动回复大模型配置：Gemini 3.5 Flash (温度: 0.7)</div>
+          </div>
+          <div class="console-panel-footer">
+            <span class="footer-stat">累计接收消息: <strong id="recCount">14</strong> 条</span>
+            <span class="footer-stat">累计 AI 答复: <strong id="sendCount">14</strong> 条</span>
+            <button class="btn btn-secondary btn-sm soft-btn" id="clearConsoleBtn">清空控制台</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 快速体验 (Quick Experience) -->
+    <section class="quick-experience-section" id="quick-experience">
+      <div class="section-header">
+        <span class="section-tag soft-card">QUICK EXPERIENCE</span>
+        <h2 class="section-title">快速体验与跨平台下载</h2>
+        <p class="section-desc">您可以在下方浏览器交互式沙盒中，模拟大模型状态并测试安全指令审批；或者直接下载各平台客户端安装包。</p>
+      </div>
+
+      <!-- 可视化交互沙盒模拟客户端 (Interactive Sandbox) -->
       <div class="sandbox-grid">
         <!-- 左侧配置器模拟 -->
         <div class="config-panel-card soft-card">
@@ -212,165 +398,11 @@
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- 五大硬核功能卡片 (Core Features) -->
-    <section class="features-section" id="features">
-      <div class="section-header">
-        <span class="section-tag soft-card">CORE CAPABILITIES</span>
-        <h2 class="section-title">安全有度，高效代劳</h2>
-        <p class="section-desc">AgentPet 拒绝复杂的概念包装，把最硬核的文件处理、后台托管和本地沙盒安全做到极致。</p>
-      </div>
-
-      <div class="features-grid">
-        <div class="feature-card soft-card">
-          <div class="feature-icon-wrapper soft-card-in">💬</div>
-          <h3 class="feature-card-title">微信与飞书双端托管</h3>
-          <p class="feature-card-text">
-            集成官方合规的微信 iLink SDK 与飞书网关服务。扫码后，将个人号/群聊变成 AI 答复代理。24H 后台静默流式运行，屏蔽无关信息打扰。
-          </p>
-        </div>
-
-        <div class="feature-card soft-card">
-          <div class="feature-icon-wrapper soft-card-in">🛡️</div>
-          <h3 class="feature-card-title">命令执行安全沙盒</h3>
-          <p class="feature-card-text">
-            首创安全审批沙盒。AI 助理分析本地项目或执行命令前，强行识别拦截破坏性指令（如 rm -rf、删库等），弹出气泡授权审批，安全零隐患。
-          </p>
-        </div>
-
-        <div class="feature-card soft-card">
-          <div class="feature-icon-wrapper soft-card-in">📂</div>
-          <h3 class="feature-card-title">多格式文档一键拖拽解析</h3>
-          <p class="feature-card-text">
-            支持 Word (mammoth/docx)、Excel (exceljs)、PDF (pdfkit/pdf-parse) 文件一键拖拽至宠物窗口。AI 本地自动提炼数据报表及要点总结。
-          </p>
-        </div>
-
-        <div class="feature-card soft-card">
-          <div class="feature-icon-wrapper soft-card-in">🎭</div>
-          <h3 class="feature-card-title">Live2D/3D 模型热拔插</h3>
-          <p class="feature-card-text">
-            采用 PixiJS 与 ThreeJS 双核心渲染。支持一键导入外部 Live2D（`.model3.json`）及 3D 模型，支持设定语言风格，让您的桌面宠物栩栩如生。
-          </p>
-        </div>
-
-        <div class="feature-card soft-card">
-          <div class="feature-icon-wrapper soft-card-in">💾</div>
-          <h3 class="feature-card-title">本地存储与一键数据迁移</h3>
-          <p class="feature-card-text">
-            聊天历史与技能包完全保存在本地 SQLite。支持自定义存储路径并一键迁移至您的特定盘符，数据与隐私完全掌控在您的物理硬盘中。
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 微信 Bot 控制台运行流式日志 (Running Log Console) -->
-    <section class="console-section" id="console-logs">
-      <div class="section-header">
-        <span class="section-tag soft-card">LIVE CONSOLE STREAM</span>
-        <h2 class="section-title">微信/飞书 托管后台流式控制台</h2>
-        <p class="section-desc">当扫码将 AgentPet 接通至托管网关后，主进程将在后台静默运行。下方为仿真模拟的多模型自动消息接收、大模型 Token 消耗及安全拦截日志。</p>
-      </div>
-
-      <div class="console-box soft-card">
-        <div class="console-panel-header">
-          <div class="window-dots">
-            <span class="dot red"></span>
-            <span class="dot yellow"></span>
-            <span class="dot green"></span>
-          </div>
-          <div class="console-panel-title">wechatBot.ts - 微信/飞书 托管运行日志</div>
-          <div class="console-status">
-            <span class="status-pulse"></span> 托管服务运行中
-          </div>
-        </div>
-        <div class="console-terminal soft-card-in" id="terminalLogs">
-          <!-- JS 动态追加日志 -->
-          <div class="log-line sys">[14:10:02] [SYS] WeChat Bot 托管网关服务初始化成功...</div>
-          <div class="log-line sys">[14:10:05] [SYS] 微信扫码成功，设备 (iLink-Bot-Mao) 已绑定在线。</div>
-          <div class="log-line sys">[14:10:08] [SYS] 当前自动回复大模型配置：Gemini 3.5 Flash (温度: 0.7)</div>
-        </div>
-        <div class="console-panel-footer">
-          <span class="footer-stat">累计接收消息: <strong id="recCount">14</strong> 条</span>
-          <span class="footer-stat">累计 AI 答复: <strong id="sendCount">14</strong> 条</span>
-          <button class="btn btn-secondary btn-sm soft-btn" id="clearConsoleBtn">清空控制台</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- 底层技术架构栈列表 (Architecture & Tech Stack) -->
-    <section class="tech-stack-section" id="tech-stack">
-      <div class="section-header">
-        <span class="section-tag soft-card">TECHNOLOGY STACK</span>
-        <h2 class="section-title">AgentPet 底层硬核技术架构</h2>
-        <p class="section-desc">产品的高效与本地安全，源于底层极其强大的技术组件库。我们毫无保留地向开发者公开核心技术框架栈：</p>
-      </div>
-
-      <div class="tech-stack-grid">
-        <!-- 技术卡片 1 -->
-        <div class="tech-card soft-card">
-          <h3 class="tech-card-title">系统内核与打包</h3>
-          <ul class="tech-list">
-            <li><strong>Electron 39.2</strong>：跨平台桌面框架封装层</li>
-            <li><strong>React 19.2 + TS</strong>：前端交互界面开发</li>
-            <li><strong>Vite 5.0 + Less</strong>：极速编译构建与样式管理</li>
-            <li><strong>Electron-builder</strong>：一键打包 Win/Mac/Linux 客户端</li>
-          </ul>
-        </div>
-
-        <!-- 技术卡片 2 -->
-        <div class="tech-card soft-card">
-          <h3 class="tech-card-title">桌面宠物渲染与连接</h3>
-          <ul class="tech-list">
-            <li><strong>Pixi.js v6</strong>：高性能桌面 Live2D 宠物挂件骨骼渲染</li>
-            <li><strong>Pixi-live2d-display</strong>：外部 Live2D 形象库加载解析</li>
-            <li><strong>Three.js 0.184</strong>：3D 宠物形象与桌面立体场景支持</li>
-            <li><strong>MCP SDK 1.29</strong>：Model Context Protocol 规范连接</li>
-          </ul>
-        </div>
-
-        <!-- 技术卡片 3 -->
-        <div class="tech-card soft-card">
-          <h3 class="tech-card-title">多格式文档解析预览</h3>
-          <ul class="tech-list">
-            <li><strong>ExcelJS + XLSX</strong>：Excel 电子数据表解析与写引擎</li>
-            <li><strong>Mammoth + Docx-preview</strong>：Word 文档提取与本地渲染</li>
-            <li><strong>PDFkit + PDF-parse</strong>：PDF 文件生成、解析与要点提炼</li>
-            <li><strong>PapaParse + JSZip</strong>：CSV 处理与压缩技能包解压</li>
-          </ul>
-        </div>
-
-        <!-- 技术卡片 4 -->
-        <div class="tech-card soft-card">
-          <h3 class="tech-card-title">持久化与微信集成</h3>
-          <ul class="tech-list">
-            <li><strong>Better-SQLite3</strong>：高性能本地 SQL 数据库聊天持久化</li>
-            <li><strong>openilink-sdk-node</strong>：微信合规官方 iLink 连接 SDK</li>
-            <li><strong>ws (WebSocket)</strong>：主进程与桌面挂件进程高速双向通信</li>
-            <li><strong>命令防爆沙盒</strong>：本地自研命令过滤拦截审批机制</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Canvas 模型调用与消息量折线图 -->
-      <div class="chart-box-tech-outer soft-card">
-        <div class="chart-header-tech">
-          <h3 class="chart-title-tech">大模型 Token 消耗及自动答复频次度量</h3>
-          <span class="chart-legend-tech"><span class="legend-dot mint"></span> API 消耗 (K Token) <span
-              class="legend-dot blue"></span> 微信自动答复 (条)</span>
-        </div>
-        <div class="canvas-container-tech soft-card-in">
-          <canvas id="techResourceChart" width="600" height="200"></canvas>
-        </div>
-      </div>
-    </section>
-
-    <!-- 客户端跨平台下载中心 (Download Center) -->
-    <section class="download-section" id="download">
-      <div class="download-card-soft soft-card">
+      <!-- 客户端跨平台下载中心 (Download Center) -->
+      <div class="download-card-soft soft-card" style="margin-top: 50px;">
         <h2 class="download-title">立即获取 AgentPet 桌面 AI 助手</h2>
-        <p class="download-desc">让有边界的桌面智能守护您的工作流与数据安全。跨平台适配支持，一键安装。</p>
+        <p class="download-desc">让有边界 of 桌面智能守护您的工作流与数据安全。跨平台适配支持，一键安装。</p>
 
         <div class="download-buttons-group">
           <!-- Windows -->
@@ -412,13 +444,15 @@
     <div class="footer-container">
       <p class="footer-copy">© 2026 AgentPet 开源桌面 AI 智能助理团队. 本网页为项目真实功能展示，保留所有权利。</p>
       <div class="footer-links">
-        <a href="#features">功能参数</a>
+        <a href="#features">功能介绍</a>
         <span class="footer-dot">•</span>
-        <a href="#sandbox">客户端沙盒</a>
+        <a href="#tech-stack">技术框架</a>
         <span class="footer-dot">•</span>
-        <a href="#tech-stack">技术架构</a>
+        <a href="#integration-service">集成服务</a>
         <span class="footer-dot">•</span>
-        <a href="https://github.com">GitHub 仓库</a>
+        <a href="#quick-experience">快速体验</a>
+        <span class="footer-dot">•</span>
+        <a href="https://github.com" target="_blank">GitHub 仓库</a>
       </div>
     </div>
   </footer>
