@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgentPet - 您的桌面 AI 助手（Electron + React + TS 开源客户端）</title>
+  <meta name="description"
+    content="AgentPet 是一款集成了 Live2D/3D 桌面宠物、微信/飞书 Bot 智能托管、本地终端安全沙盒及多维文档解析渲染的 Electron 开源桌面端 AI 助理。">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+    rel="stylesheet">
+  <link rel="icon" href="logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- 顶部导航栏 -->
+  <nav class="navbar">
+    <div class="nav-container soft-ui-nav">
+      <div class="logo">
+        <img src="logo.svg" alt="AgentPet Logo" class="logo-icon-img">
+        <span class="logo-text">AgentPet</span>
+        <span class="badge">Electron AI</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#features">功能参数</a></li>
+        <li><a href="#sandbox">客户端沙盒</a></li>
+        <li><a href="#console-logs">托管日志</a></li>
+        <li><a href="#tech-stack">技术架构</a></li>
+      </ul>
+      <a href="#download" class="btn btn-primary btn-sm soft-btn">立即下载</a>
+    </div>
+  </nav>
+
+  <main class="content-wrapper">
+
+    <!-- 首屏 Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          让有温度的智能，<br>
+          <span class="text-gradient">常驻您的桌面</span>
+        </h1>
+        <p class="hero-subtitle">
+          AgentPet 是一款基于 Electron + React + TypeScript 架构开发的开源本地桌面 AI 助理。它常驻于您的桌面，不仅提供基于 Pixi.js 的 Live2D
+          虚拟体陪伴与语音互动，更能集成微信飞书等代理 24H 消息回复、动态调用 MCP 服务、四层记忆沉淀机制，办公报表自动化处理等；所有聊天数据保存在本地 SQLite，数据本地存储。
+        </p>
+        <div class="hero-buttons">
+          <a href="#download" class="btn btn-primary soft-btn">
+            <svg class="btn-icon" viewBox="0 0 24 24">
+              <path fill="currentColor"
+                d="M12 2C6.49 2 2 6.49 2 12s4.49 10 10 10s10-4.49 10-10S17.51 2 12 2zm1 10h3l-4 4l-4-4h3V8h2v4z" />
+            </svg>
+            下载客户端 (v1.0.0)
+          </a>
+          <a href="https://github.com" target="_blank" class="btn btn-secondary soft-btn">
+            <svg class="btn-icon" viewBox="0 0 24 24">
+              <path fill="currentColor"
+                d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5c.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34c-.46-1.16-1.11-1.47-1.11-1.47c-.91-.62.07-.6.07-.6c1 .07 1.53 1.03 1.53 1.03c.87 1.52 2.34 1.07 2.91.83c.09-.65.35-1.09.63-1.34c-2.22-.25-4.55-1.11-4.55-4.92c0-1.11.38-2 1.03-2.71c-.1-.25-.45-1.29.1-2.64c0 0 .84-.27 2.75 1.02c.79-.22 1.65-.33 2.5-.33c.85 0 1.71.11 2.5.33c1.91-1.29 2.75-1.02 2.75-1.02c.55 1.35.2 2.39.1 2.64c.65.71 1.03 1.6 1.03 2.71c0 3.82-2.34 4.66-4.57 4.91c.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z" />
+            </svg>
+            GitHub 开源仓库
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-num">100%</span>
+            <span class="stat-lbl">Better-SQLite3 本地存储</span>
+          </div>
+          <div class="stat-separator"></div>
+          <div class="stat-item">
+            <span class="stat-num">MCP</span>
+            <span class="stat-lbl">大模型接口规范支持</span>
+          </div>
+          <div class="stat-separator"></div>
+          <div class="stat-item">
+            <span class="stat-num">安全</span>
+            <span class="stat-lbl">命令审批沙盒防御</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-image-container">
+        <div class="mascot-frame soft-card">
+          <img src="agentpet_tech.png" alt="AgentPet 桌面宠物猫咪" class="mascot-img">
+          <!-- 悬浮的真实参数面板 -->
+          <div class="floating-panel p1 soft-card">
+            <span class="panel-icon">💻</span>
+            <div class="panel-text">
+              <span class="lbl">打包内核</span>
+              <span class="val">Electron Builder</span>
+            </div>
+          </div>
+          <div class="floating-panel p2 soft-card">
+            <span class="panel-icon">🎨</span>
+            <div class="panel-text">
+              <span class="lbl">形象渲染</span>
+              <span class="val">PixiJS v6 & ThreeJS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 可视化交互沙盒模拟客户端 (Interactive Sandbox) -->
+    <section class="sandbox-section" id="sandbox">
+      <div class="section-header">
+        <span class="section-tag soft-card">INTERACTIVE SANDBOX</span>
+        <h2 class="section-title">交互式 Electron 客户端沙盒模拟</h2>
+        <p class="section-desc">直接在浏览器中预览 AgentPet 桌面端的真实控制逻辑：测试大模型连接、切换 Live2D 形象或尝试注入终端命令以触发沙盒拦截审批。</p>
+      </div>
+
+      <div class="sandbox-grid">
+        <!-- 左侧配置器模拟 -->
+        <div class="config-panel-card soft-card">
+          <h3 class="panel-main-title">⚙️ 大模型与安全配置</h3>
+          <p class="panel-desc">对应客户端“SettingsPage”的模型设置与命令审批开关</p>
+
+          <div class="form-group-tech">
+            <label class="tech-label">API 提供商 (LLM Provider)</label>
+            <select id="llmProvider" class="soft-input-tech">
+              <option value="gemini">Gemini 3.5 (推荐默认)</option>
+              <option value="deepseek">DeepSeek R1</option>
+              <option value="openai">OpenAI GPT-4o</option>
+              <option value="ollama">Ollama (本地运行)</option>
+            </select>
+          </div>
+
+          <div class="form-group-tech">
+            <label class="tech-label">API 密钥 (API Key)</label>
+            <div class="input-with-btn">
+              <input type="password" id="apiKey" value="••••••••••••••••••••••••" class="soft-input-tech" readonly>
+              <button class="btn btn-secondary btn-sm soft-btn" id="testConnBtn">🔌 测试连接</button>
+            </div>
+            <span class="input-hint" id="connStatus">连通状态：就绪，等待测试</span>
+          </div>
+
+          <div class="form-group-tech border-box-tech">
+            <div class="switch-row">
+              <div class="switch-info">
+                <span class="sw-title">终端命令安全沙盒模式</span>
+                <span class="sw-desc">阻止破坏性脚本，指令本地运行前要求手动确认。</span>
+              </div>
+              <div class="toggle-switch">
+                <input type="checkbox" id="securitySandboxToggle" checked>
+                <label for="securitySandboxToggle" class="toggle-slider-tech soft-btn"></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group-tech">
+            <label class="tech-label">Live2D 虚拟形象库</label>
+            <div class="mascot-select-buttons">
+              <button class="btn btn-secondary btn-sm soft-btn active" id="mascotStyleMao">🎭 Mao 医师形象</button>
+              <button class="btn btn-secondary btn-sm soft-btn" id="mascotStyleCool">🕶️ Mao 酷炫形象</button>
+              <button class="btn btn-secondary btn-sm soft-btn" id="injectRiskBtn">🔥 注入高危指令测试</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右侧桌面宠物交互与安全拦截弹窗 -->
+        <div class="mascot-chat-panel soft-card">
+          <div class="client-title-header">
+            <div class="client-dot red"></div>
+            <div class="client-dot yellow"></div>
+            <div class="client-dot green"></div>
+            <span class="header-client-name">Mao Mascot Interactive Window</span>
+          </div>
+
+          <!-- 桌面小猫形象框 -->
+          <div class="mascot-display-box soft-card-in">
+            <div class="simulated-mascot" id="mascotGraphic">
+              <!-- 模拟的桌面猫咪骨骼 -->
+              <div class="m-ears"></div>
+              <div class="m-eyes"><span class="m-eye"></span><span class="m-eye"></span></div>
+              <div class="m-blush" id="mascotBlush"></div>
+              <div class="m-glasses" id="mascotGlasses"></div>
+              <div class="m-mouth"></div>
+            </div>
+
+            <!-- 气泡 -->
+            <div class="mascot-speech-bubble soft-card" id="mascotBubble">
+              你好呀！我是你的桌面 AI 助手 Mao。我已经接通了本地 SQLite 数据库，安全沙盒已启动，请问需要我为您做些什么？
+            </div>
+
+            <!-- ⚠️ 高危脚本审批内嵌弹窗 (模拟沙盒拦截) -->
+            <div class="security-approval-modal soft-card" id="securityApprovalModal" style="display: none;">
+              <div class="modal-alert-header">
+                <span class="warn-icon">⚠️</span>
+                <strong>终端指令执行安全审批</strong>
+              </div>
+              <p class="modal-alert-desc">AI 尝试在您的电脑上执行一条可能具有破坏性的 Shell 脚本：</p>
+              <div class="script-box-tech" id="sandboxCommandText">
+                $ rm -rf d:/Electron/AgentPet/node_modules
+              </div>
+              <div class="modal-alert-actions">
+                <button class="btn btn-secondary btn-sm soft-btn" id="sandboxRejectBtn">🚫 安全拦截(推荐)</button>
+                <button class="btn btn-primary btn-sm soft-btn" id="sandboxAllowBtn"
+                  style="background-color: var(--color-accent); border: none; color: #fff;">⚠️ 允许执行</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 交互输入 -->
+          <div class="mascot-chat-input-bar">
+            <input type="text" id="mascotChatInput" placeholder="输入你想与 Mao 交互的文字（如：帮我解析 Excel，或者 运行命令）..."
+              class="soft-input-tech-chat">
+            <button class="btn btn-primary soft-btn" id="mascotChatSendBtn">发送</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 五大硬核功能卡片 (Core Features) -->
+    <section class="features-section" id="features">
+      <div class="section-header">
+        <span class="section-tag soft-card">CORE CAPABILITIES</span>
+        <h2 class="section-title">安全有度，高效代劳</h2>
+        <p class="section-desc">AgentPet 拒绝复杂的概念包装，把最硬核的文件处理、后台托管和本地沙盒安全做到极致。</p>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-card soft-card">
+          <div class="feature-icon-wrapper soft-card-in">💬</div>
+          <h3 class="feature-card-title">微信与飞书双端托管</h3>
+          <p class="feature-card-text">
+            集成官方合规的微信 iLink SDK 与飞书网关服务。扫码后，将个人号/群聊变成 AI 答复代理。24H 后台静默流式运行，屏蔽无关信息打扰。
+          </p>
+        </div>
+
+        <div class="feature-card soft-card">
+          <div class="feature-icon-wrapper soft-card-in">🛡️</div>
+          <h3 class="feature-card-title">命令执行安全沙盒</h3>
+          <p class="feature-card-text">
+            首创安全审批沙盒。AI 助理分析本地项目或执行命令前，强行识别拦截破坏性指令（如 rm -rf、删库等），弹出气泡授权审批，安全零隐患。
+          </p>
+        </div>
+
+        <div class="feature-card soft-card">
+          <div class="feature-icon-wrapper soft-card-in">📂</div>
+          <h3 class="feature-card-title">多格式文档一键拖拽解析</h3>
+          <p class="feature-card-text">
+            支持 Word (mammoth/docx)、Excel (exceljs)、PDF (pdfkit/pdf-parse) 文件一键拖拽至宠物窗口。AI 本地自动提炼数据报表及要点总结。
+          </p>
+        </div>
+
+        <div class="feature-card soft-card">
+          <div class="feature-icon-wrapper soft-card-in">🎭</div>
+          <h3 class="feature-card-title">Live2D/3D 模型热拔插</h3>
+          <p class="feature-card-text">
+            采用 PixiJS 与 ThreeJS 双核心渲染。支持一键导入外部 Live2D（`.model3.json`）及 3D 模型，支持设定语言风格，让您的桌面宠物栩栩如生。
+          </p>
+        </div>
+
+        <div class="feature-card soft-card">
+          <div class="feature-icon-wrapper soft-card-in">💾</div>
+          <h3 class="feature-card-title">本地存储与一键数据迁移</h3>
+          <p class="feature-card-text">
+            聊天历史与技能包完全保存在本地 SQLite。支持自定义存储路径并一键迁移至您的特定盘符，数据与隐私完全掌控在您的物理硬盘中。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 微信 Bot 控制台运行流式日志 (Running Log Console) -->
+    <section class="console-section" id="console-logs">
+      <div class="section-header">
+        <span class="section-tag soft-card">LIVE CONSOLE STREAM</span>
+        <h2 class="section-title">微信/飞书 托管后台流式控制台</h2>
+        <p class="section-desc">当扫码将 AgentPet 接通至托管网关后，主进程将在后台静默运行。下方为仿真模拟的多模型自动消息接收、大模型 Token 消耗及安全拦截日志。</p>
+      </div>
+
+      <div class="console-box soft-card">
+        <div class="console-panel-header">
+          <div class="window-dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+          </div>
+          <div class="console-panel-title">wechatBot.ts - 微信/飞书 托管运行日志</div>
+          <div class="console-status">
+            <span class="status-pulse"></span> 托管服务运行中
+          </div>
+        </div>
+        <div class="console-terminal soft-card-in" id="terminalLogs">
+          <!-- JS 动态追加日志 -->
+          <div class="log-line sys">[14:10:02] [SYS] WeChat Bot 托管网关服务初始化成功...</div>
+          <div class="log-line sys">[14:10:05] [SYS] 微信扫码成功，设备 (iLink-Bot-Mao) 已绑定在线。</div>
+          <div class="log-line sys">[14:10:08] [SYS] 当前自动回复大模型配置：Gemini 3.5 Flash (温度: 0.7)</div>
+        </div>
+        <div class="console-panel-footer">
+          <span class="footer-stat">累计接收消息: <strong id="recCount">14</strong> 条</span>
+          <span class="footer-stat">累计 AI 答复: <strong id="sendCount">14</strong> 条</span>
+          <button class="btn btn-secondary btn-sm soft-btn" id="clearConsoleBtn">清空控制台</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 底层技术架构栈列表 (Architecture & Tech Stack) -->
+    <section class="tech-stack-section" id="tech-stack">
+      <div class="section-header">
+        <span class="section-tag soft-card">TECHNOLOGY STACK</span>
+        <h2 class="section-title">AgentPet 底层硬核技术架构</h2>
+        <p class="section-desc">产品的高效与本地安全，源于底层极其强大的技术组件库。我们毫无保留地向开发者公开核心技术框架栈：</p>
+      </div>
+
+      <div class="tech-stack-grid">
+        <!-- 技术卡片 1 -->
+        <div class="tech-card soft-card">
+          <h3 class="tech-card-title">系统内核与打包</h3>
+          <ul class="tech-list">
+            <li><strong>Electron 39.2</strong>：跨平台桌面框架封装层</li>
+            <li><strong>React 19.2 + TS</strong>：前端交互界面开发</li>
+            <li><strong>Vite 5.0 + Less</strong>：极速编译构建与样式管理</li>
+            <li><strong>Electron-builder</strong>：一键打包 Win/Mac/Linux 客户端</li>
+          </ul>
+        </div>
+
+        <!-- 技术卡片 2 -->
+        <div class="tech-card soft-card">
+          <h3 class="tech-card-title">桌面宠物渲染与连接</h3>
+          <ul class="tech-list">
+            <li><strong>Pixi.js v6</strong>：高性能桌面 Live2D 宠物挂件骨骼渲染</li>
+            <li><strong>Pixi-live2d-display</strong>：外部 Live2D 形象库加载解析</li>
+            <li><strong>Three.js 0.184</strong>：3D 宠物形象与桌面立体场景支持</li>
+            <li><strong>MCP SDK 1.29</strong>：Model Context Protocol 规范连接</li>
+          </ul>
+        </div>
+
+        <!-- 技术卡片 3 -->
+        <div class="tech-card soft-card">
+          <h3 class="tech-card-title">多格式文档解析预览</h3>
+          <ul class="tech-list">
+            <li><strong>ExcelJS + XLSX</strong>：Excel 电子数据表解析与写引擎</li>
+            <li><strong>Mammoth + Docx-preview</strong>：Word 文档提取与本地渲染</li>
+            <li><strong>PDFkit + PDF-parse</strong>：PDF 文件生成、解析与要点提炼</li>
+            <li><strong>PapaParse + JSZip</strong>：CSV 处理与压缩技能包解压</li>
+          </ul>
+        </div>
+
+        <!-- 技术卡片 4 -->
+        <div class="tech-card soft-card">
+          <h3 class="tech-card-title">持久化与微信集成</h3>
+          <ul class="tech-list">
+            <li><strong>Better-SQLite3</strong>：高性能本地 SQL 数据库聊天持久化</li>
+            <li><strong>openilink-sdk-node</strong>：微信合规官方 iLink 连接 SDK</li>
+            <li><strong>ws (WebSocket)</strong>：主进程与桌面挂件进程高速双向通信</li>
+            <li><strong>命令防爆沙盒</strong>：本地自研命令过滤拦截审批机制</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Canvas 模型调用与消息量折线图 -->
+      <div class="chart-box-tech-outer soft-card">
+        <div class="chart-header-tech">
+          <h3 class="chart-title-tech">大模型 Token 消耗及自动答复频次度量</h3>
+          <span class="chart-legend-tech"><span class="legend-dot mint"></span> API 消耗 (K Token) <span
+              class="legend-dot blue"></span> 微信自动答复 (条)</span>
+        </div>
+        <div class="canvas-container-tech soft-card-in">
+          <canvas id="techResourceChart" width="600" height="200"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- 客户端跨平台下载中心 (Download Center) -->
+    <section class="download-section" id="download">
+      <div class="download-card-soft soft-card">
+        <h2 class="download-title">立即获取 AgentPet 桌面 AI 助手</h2>
+        <p class="download-desc">让有边界的桌面智能守护您的工作流与数据安全。跨平台适配支持，一键安装。</p>
+
+        <div class="download-buttons-group">
+          <!-- Windows -->
+          <div class="dl-platform-btn soft-card" onclick="alert('开始下载 Windows 客户端 (.exe)...')">
+            <span class="pf-icon">🪟</span>
+            <div class="pf-text">
+              <span class="name">下载 Windows x64</span>
+              <span class="desc">支持 Win10 / Win11 (0.97.1.exe)</span>
+            </div>
+          </div>
+          <!-- macOS -->
+          <div class="dl-platform-btn soft-card" onclick="alert('开始下载 macOS 客户端 (.dmg)...')">
+            <span class="pf-icon">🍏</span>
+            <div class="pf-text">
+              <span class="name">下载 macOS Client</span>
+              <span class="desc">支持 Intel & M系列 (.dmg)</span>
+            </div>
+          </div>
+          <!-- Linux -->
+          <div class="dl-platform-btn soft-card" onclick="alert('开始下载 Linux 客户端 (.deb)...')">
+            <span class="pf-icon">🐧</span>
+            <div class="pf-text">
+              <span class="name">下载 Linux x64</span>
+              <span class="desc">支持 Ubuntu/Debian (.deb)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="download-action-btn-container">
+          <button class="btn btn-primary soft-btn btn-lg">下载最新的跨平台安装包 (v1.0.0)</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div class="footer-container">
+      <p class="footer-copy">© 2026 AgentPet 开源桌面 AI 智能助理团队. 本网页为项目真实功能展示，保留所有权利。</p>
+      <div class="footer-links">
+        <a href="#features">功能参数</a>
+        <span class="footer-dot">•</span>
+        <a href="#sandbox">客户端沙盒</a>
+        <span class="footer-dot">•</span>
+        <a href="#tech-stack">技术架构</a>
+        <span class="footer-dot">•</span>
+        <a href="https://github.com">GitHub 仓库</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
