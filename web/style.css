@@ -1553,3 +1553,509 @@ input:checked + .toggle-slider-tech::before {
     padding: 40px 20px;
   }
 }
+
+/* ══════════════════════════════════════════════════════════════
+   Added for TECHNICAL_REPORT.md 重构与截图引用
+   ══════════════════════════════════════════════════════════════ */
+
+/* 代码块容器样式 - 极客暗色毛玻璃 */
+.code-block-container {
+  background: rgba(30, 30, 46, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: var(--shadow-sm), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+  margin: 20px 0;
+  text-align: left;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  background: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 11px;
+  color: #a6adc8;
+}
+
+.code-lang-tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.code-lang-tag::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-rose-quartz);
+}
+
+.code-toggle-btn {
+  background: rgba(255, 255, 255, 0.05);
+  color: #cdd6f4;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 500;
+  transition: background var(--transition-fast);
+}
+
+.code-toggle-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.code-content-wrapper {
+  position: relative;
+  transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  max-height: 180px; /* 默认折叠高度 */
+  overflow: hidden;
+}
+
+.code-content-wrapper.expanded {
+  max-height: 2000px; /* 展开后高度自适应 */
+}
+
+/* 渐变遮罩 */
+.code-fade-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(to top, rgba(30, 30, 46, 1) 0%, rgba(30, 30, 46, 0) 100%);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.code-content-wrapper.expanded .code-fade-overlay {
+  opacity: 0;
+}
+
+.code-content {
+  margin: 0;
+  padding: 16px;
+  font-family: 'SF Mono', 'Fira Code', ui-monospace, monospace;
+  font-size: 12px;
+  line-height: 1.6;
+  color: #cdd6f4;
+  overflow-x: auto;
+}
+
+.code-content pre {
+  margin: 0;
+  background: transparent;
+}
+
+/* 语法着色模拟 */
+.code-keyword { color: #cba6f7; font-weight: 600; }
+.code-function { color: #89b4fa; }
+.code-string { color: #a6e3a1; }
+.code-number { color: #f9e2af; }
+.code-comment { color: #585b70; font-style: italic; }
+.code-type { color: #f5e0dc; }
+.code-builtin { color: #fab387; }
+
+/* 截图容器样式 */
+.screenshot-container {
+  border-radius: var(--radius-cards);
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  background: #ffffff;
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+  position: relative;
+  display: block;
+}
+
+.screenshot-container:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.screenshot-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.screenshot-caption {
+  padding: 12px 20px;
+  font-size: var(--text-caption);
+  color: var(--color-graphite);
+  text-align: center;
+  background: var(--color-fog);
+  font-weight: 500;
+  border-top: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+/* MCP 截图双图标签页切换器 */
+.mcp-tabs-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.mcp-tabs-header {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  background: rgba(0, 0, 0, 0.04);
+  padding: 4px;
+  border-radius: var(--radius-navitems);
+  align-self: center;
+}
+
+.mcp-tab-btn {
+  background: transparent;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 12px;
+  font-size: var(--text-caption);
+  font-weight: 500;
+  color: var(--color-graphite);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.mcp-tab-btn.active {
+  background: #ffffff;
+  color: var(--color-ink-black);
+  box-shadow: var(--shadow-sm);
+}
+
+.mcp-tab-pane {
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+
+.mcp-tab-pane.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 交互拓扑节点图 */
+.topology-section {
+  background: #ffffff;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.arch-layout-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.interactive-topology {
+  position: relative;
+  background: rgba(248, 248, 248, 0.6);
+  border-radius: var(--radius-cards);
+  border: 1px dashed rgba(0, 0, 0, 0.08);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.topo-node {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-navitems);
+  padding: 14px 18px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  text-align: left;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.topo-node:hover {
+  transform: translateX(4px);
+  border-color: rgba(3, 88, 247, 0.3);
+}
+
+.topo-node-title {
+  font-size: var(--text-body-sm);
+  font-weight: 600;
+  color: var(--color-ink-black);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.topo-node-desc {
+  font-size: var(--text-caption);
+  color: var(--color-graphite);
+  line-height: 1.4;
+}
+
+.topo-arrow-down {
+  width: 2px;
+  height: 20px;
+  background: linear-gradient(to bottom, var(--color-slate), transparent);
+  margin: -10px auto;
+  align-self: center;
+}
+
+/* 依赖蓝图表格设计 */
+.blueprint-table-container {
+  overflow-x: auto;
+  margin-top: 30px;
+}
+
+.blueprint-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: var(--text-body-sm);
+}
+
+.blueprint-table th {
+  padding: 14px 20px;
+  background: rgba(0, 0, 0, 0.03);
+  font-weight: 600;
+  color: var(--color-ink-black);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.06);
+}
+
+.blueprint-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  color: var(--color-graphite);
+  line-height: 1.5;
+}
+
+.blueprint-table tr:hover td {
+  background: rgba(0, 0, 0, 0.01);
+  color: var(--color-ink-black);
+}
+
+.blueprint-tag {
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--color-ink-black);
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.blueprint-dep-name {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-weight: 600;
+  color: var(--color-signal-blue);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Added for 四层记忆设计可视化
+   ══════════════════════════════════════════════════════════════ */
+
+/* 记忆塔的外部视角容器 */
+.memory-tower-container {
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 记忆塔本体，正面展示 */
+.memory-tower {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px; /* 间距使卡片直面平铺 */
+  position: relative;
+}
+
+/* 单个记忆层 */
+.memory-layer {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: var(--radius-navitems);
+  padding: 18px 24px;
+  box-shadow: var(--shadow-sm), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  cursor: pointer;
+  position: relative;
+  text-align: left;
+}
+
+/* 每一层的宽度统一为 100% 以便正面整齐展示 */
+.memory-layer.l1 { z-index: 4; }
+.memory-layer.l2 { z-index: 3; }
+.memory-layer.l3 { z-index: 2; }
+.memory-layer.l4 { z-index: 1; }
+
+/* 每一层不同的发光效果与装饰线 */
+.memory-layer::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: 4px 0 0 4px;
+}
+
+.memory-layer.l1::after { background: var(--color-rose-quartz); }
+.memory-layer.l2::after { background: var(--color-marigold); }
+.memory-layer.l3::after { background: var(--color-signal-blue); }
+.memory-layer.l4::after { background: var(--color-red); }
+
+/* Hover 平面浮起与发光 */
+.memory-layer:hover {
+  transform: translateY(-6px);
+  background: #ffffff;
+  border-color: rgba(3, 88, 247, 0.35);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08), 0 4px 10px rgba(0, 0, 0, 0.02);
+}
+
+/* 记忆层内文案 */
+.layer-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.layer-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-ink-black);
+}
+
+.layer-tag {
+  font-size: 10px;
+  font-weight: 700;
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--color-graphite);
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+
+.layer-desc {
+  font-size: var(--text-caption);
+  color: var(--color-graphite);
+  line-height: 1.5;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   Added for 分层系统架构图 (Layered System Architecture)
+   ══════════════════════════════════════════════════════════════ */
+.sys-arch-diagram {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.arch-layer-row {
+  display: flex;
+  align-items: stretch;
+  gap: 20px;
+  width: 100%;
+}
+
+/* 左侧括号/层级名称 */
+.layer-bracket-label {
+  width: 110px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-ink-black);
+  background: rgba(255, 255, 255, 0.4);
+  border-left: 4px solid var(--color-signal-blue);
+  border-radius: 6px;
+  padding: 12px 6px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  text-align: center;
+  white-space: nowrap;
+  box-shadow: var(--shadow-sm);
+}
+
+/* 右侧组件网格容器 */
+.layer-components-box {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: var(--radius-navitems);
+  padding: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+/* 每一个组件卡片 */
+.arch-comp-card {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+  border-radius: 8px;
+  padding: 12px 16px;
+  box-shadow: var(--shadow-sm);
+  font-size: 12px;
+  color: var(--color-ink-black);
+  font-weight: 600;
+  transition: all 0.2s cubic-bezier(0.165, 0.84, 0.44, 1);
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 140px;
+  flex: 1 1 160px;
+  text-align: left;
+}
+
+.arch-comp-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(3, 88, 247, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  background: #ffffff;
+}
+
+.arch-comp-card .comp-tech {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--color-signal-blue);
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  text-transform: uppercase;
+}
+
+/* 用于区分不同层级的背景装饰 */
+.arch-layer-row:nth-child(1) .layer-bracket-label { border-left-color: var(--color-rose-quartz); }
+.arch-layer-row:nth-child(2) .layer-bracket-label { border-left-color: var(--color-marigold); }
+.arch-layer-row:nth-child(3) .layer-bracket-label { border-left-color: var(--color-signal-blue); }
+.arch-layer-row:nth-child(4) .layer-bracket-label { border-left-color: var(--color-red); }
+.arch-layer-row:nth-child(5) .layer-bracket-label { border-left-color: var(--color-graphite); }

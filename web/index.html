@@ -15,36 +15,27 @@
     rel="stylesheet">
   <link rel="icon" href="logo.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-  <!-- 光谱渐变顶部装饰条 -->
-  <div class="gradient-top-strip"></div>
-
-  <!-- 顶部导航栏 -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <div class="logo">
-        <img src="logo.svg" alt="AgentPet Logo" class="logo-icon-img">
-        <span class="logo-text">AgentPet</span>
-        <span class="badge">Electron AI</span>
-      </div>
-      <ul class="nav-links">
-        <li><a href="#features">功能介绍</a></li>
-        <li><a href="#tech-stack">技术框架</a></li>
-        <li><a href="#integration-service">集成服务</a></li>
-        <li><a href="#quick-experience">快速体验</a></li>
-      </ul>
-      <a href="#quick-experience" class="btn btn-primary btn-sm">立即下载</a>
+  <div class="nav-container">
+    <div class="logo">
+      <img src="logo.svg" alt="AgentPet Logo" class="logo-icon-img">
+      <span class="logo-text">AgentPet</span>
+      <span class="badge">Electron AI</span>
     </div>
+    <ul class="nav-links">
+      <li><a href="#architecture">系统架构</a></li>
+      <li><a href="#mcp-injection">MCP注入</a></li>
+      <li><a href="#local-tools">本地工具</a></li>
+      <li><a href="#live2d-tts">快捷会话</a></li>
+      <li><a href="#communications">通讯集成</a></li>
+      <li><a href="#memory-design">四层记忆</a></li>
+    </ul>
+  </div>
   </nav>
 
   <main class="content-wrapper">
 
     <!-- 首屏 Hero Section -->
     <section class="hero-section" id="hero">
-      <!-- 光谱渐变环境光晕 -->
       <div class="gradient-glow"></div>
       <div class="hero-content">
         <h1 class="hero-title">
@@ -53,7 +44,7 @@
         </h1>
         <p class="hero-subtitle">
           AgentPet 是一款基于 Electron + React + TypeScript 架构开发的开源本地桌面 AI 助理。它常驻于您的桌面，不仅提供基于 Pixi.js 的 Live2D
-          虚拟体陪伴与语音互动，更能集成微信飞书等代理 24H 消息回复、动态调用 MCP 服务、四层记忆沉淀机制，办公报表定时处理等；所有聊天数据保存在本地 SQLite，数据隐私本地存储。
+          虚拟体陪伴与语音互动，更能集成微信飞书等代理进行 24H 消息回复、动态调用 MCP 服务、四层记忆沉淀机制；所有聊天数据均保存在本地 SQLite，保障您的数据隐私。
         </p>
         <div class="hero-buttons">
           <a href="#quick-experience" class="btn btn-primary">
@@ -79,359 +70,365 @@
           <div class="stat-separator"></div>
           <div class="stat-item">
             <span class="stat-num">MCP</span>
-            <span class="stat-lbl">大模型接口规范支持</span>
+            <span class="stat-lbl">动态注入与 Schema 懒连接</span>
           </div>
           <div class="stat-separator"></div>
           <div class="stat-item">
-            <span class="stat-num">安全</span>
-            <span class="stat-lbl">命令审批沙盒防御</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="hero-image-container">
-        <div class="mascot-frame frosted-card">
-          <img src="agentpet_tech.png" alt="AgentPet 桌面宠物猫咪" class="mascot-img">
-          <!-- 悬浮的真实参数面板 -->
-          <div class="floating-panel p1">
-            <span class="panel-icon">💻</span>
-            <div class="panel-text">
-              <span class="lbl">打包内核</span>
-              <span class="val">Electron Builder</span>
-            </div>
-          </div>
-          <div class="floating-panel p2">
-            <span class="panel-icon">🎨</span>
-            <div class="panel-text">
-              <span class="lbl">形象渲染</span>
-              <span class="val">PixiJS v6 & ThreeJS</span>
-            </div>
+            <span class="stat-num">长久记忆</span>
+            <span class="stat-lbl">四层任务画像设计</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 五大硬核功能卡片 (Core Features) -->
-    <section class="features-section" id="features">
-      <!-- 光谱渐变环境光晕 -->
+    <!-- 1. 技术架构 Section (System Architecture) -->
+    <section class="features-section" id="architecture"
+      style="border-top: 1px solid rgba(0, 0, 0, 0.05); padding-top: 80px; padding-bottom: 80px;">
+      <div class="gradient-glow"></div>
+      <div class="section-header">
+        <span class="section-tag">SYSTEM ARCHITECTURE</span>
+        <h2 class="section-title">系统架构：主进程与渲染进程多维网络拓扑</h2>
+        <p class="section-desc">本项目的核心是通过 IPC 通信机制实现底层原生资源与前端高帧率动画展示的双进程高效联动。</p>
+      </div>
+
+      <!-- 分层系统架构图（满宽展示区） -->
+      <div style="max-width: 1200px; margin: 0 auto 50px auto; padding: 0 20px;">
+        <div class="sys-arch-diagram">
+          <!-- 1. 展现层 -->
+          <div class="arch-layer-row">
+            <div class="layer-bracket-label">展现层 (GUI)</div>
+            <div class="layer-components-box">
+              <div class="arch-comp-card">
+                <span>桌面 Live2D 宠物挂件</span>
+                <span class="comp-tech">PixiJS v6 / WebGL</span>
+              </div>
+              <div class="arch-comp-card">
+                <span>系统管理控制台</span>
+                <span class="comp-tech">React 19 / TS / Less</span>
+              </div>
+              <div class="arch-comp-card">
+                <span>快捷会话流式气泡</span>
+                <span class="comp-tech">Stream-render CSS</span>
+              </div>
+            </div>
+          </div>
+          <!-- 2. 路由通信层 -->
+          <div class="arch-layer-row">
+            <div class="layer-bracket-label">通信路由层</div>
+            <div class="layer-components-box">
+              <div class="arch-comp-card">
+                <span>双通道 IPC 管道</span>
+                <span class="comp-tech">IPC-Main / IPC-Renderer</span>
+              </div>
+              <div class="arch-comp-card">
+                <span>自定义 live2d:// 协议</span>
+                <span class="comp-tech">stream-intercept Server</span>
+              </div>
+              <div class="arch-comp-card">
+                <span>进程间高速总线</span>
+                <span class="comp-tech">ws (WebSocket)</span>
+              </div>
+            </div>
+          </div>
+          <!-- 3. 核心服务层 -->
+          <div class="arch-layer-row">
+            <div class="layer-bracket-label">核心服务层</div>
+            <div class="layer-components-box">
+              <div class="arch-comp-card">
+                <span>MCP 动态按需注入器</span>
+                <span class="comp-tech">SSE / MCP SDK</span>
+              </div>
+              <div class="arch-comp-card">
+                <span>TTS 合成口型同步</span>
+                <span class="comp-tech">Web Audio Analyser</span>
+              </div>
+              <div class="arch-comp-card">
+                <span>本地办公文档提取器</span>
+                <span class="comp-tech">pdf-parse / xlsx Worker</span>
+              </div>
+              <div class="arch-comp-card">
+                <span>命令安全审计沙盒</span>
+                <span class="comp-tech">auditPipeline 防爆</span>
+              </div>
+            </div>
+          </div>
+          <!-- 4. 数据存储层 -->
+          <div class="arch-layer-row">
+            <div class="layer-bracket-label">数据存储层</div>
+            <div class="layer-components-box">
+              <div class="arch-comp-card">
+                <span>四层记忆物理沉淀库</span>
+                <span class="comp-tech">SQLite DB Memory</span>
+              </div>
+              <div class="arch-comp-card">
+                <span>外部 RAG 本地索引</span>
+                <span class="comp-tech">Better-SQLite3</span>
+              </div>
+              <div class="arch-comp-card">
+                <span>微信 CDN 加密直传</span>
+                <span class="comp-tech">AES-128-ECB HTTP</span>
+              </div>
+            </div>
+          </div>
+          <!-- 5. 编译运行层 -->
+          <div class="arch-layer-row">
+            <div class="layer-bracket-label">运行环境层</div>
+            <div class="layer-components-box">
+              <div class="arch-comp-card">
+                <span>跨平台物理隔离底座</span>
+                <span class="comp-tech">Electron 39.2</span>
+              </div>
+              <div class="arch-comp-card">
+                <span>极速冷启动编译器</span>
+                <span class="comp-tech">Vite 5.0</span>
+              </div>
+              <div class="arch-comp-card">
+                <span>跨平台一键发布打包</span>
+                <span class="comp-tech">Electron Builder</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="arch-layout-grid" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <div class="tech-text-block" style="text-align: left;">
+          <h3 class="integration-main-title" style="font-size: 22px; margin-bottom: 16px;">📂 Electron 双进程架构与原生通信机制</h3>
+          <p class="integration-desc-p" style="line-height: 1.7; font-size: var(--text-body-sm);">
+            <strong>渲染-主进程物理隔离：</strong> 本系统完全基于双进程物理沙盒机制。主进程直接调用 C++ 底层原生能力和 SQLite，渲染进程仅执行受信任的 Live2D
+            挂件动画渲染，保证了桌面的极端流畅。
+            <br><br>
+            <strong>通信总线路由：</strong> 通过 Electron 高速 <code>IPC 通道</code>
+            实时桥接大模型意图命令。当渲染进程发起本地调用时，命令在主进程的安全沙盒进行静态阻断过滤，保障用户主机完全免于恶意脚本入侵。
+          </p>
+        </div>
+
+        <!-- 架构真实运行截图 (482_1x_shots_so.png) -->
+        <div class="screenshot-container">
+          <img src="images/482_1x_shots_so.png" alt="AgentPet 运行日志与 Token 监测控制台" class="screenshot-img">
+          <div class="screenshot-caption">图 1.1：AgentPet 客户端内置日志与大模型 Token 消耗及模型份额监测中心</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. 提示词 MCP 动态注入 Section (MCP Dynamic Injection) -->
+    <section class="features-section" id="mcp-injection"
+      style="background: var(--color-canvas); border-top: 1px solid rgba(0, 0, 0, 0.05); padding-top: 80px; padding-bottom: 80px;">
       <div class="gradient-glow-strong"></div>
       <div class="section-header">
-        <span class="section-tag">CORE CAPABILITIES</span>
-        <h2 class="section-title">功能介绍：安全有度，高效代劳</h2>
-        <p class="section-desc">AgentPet 拒绝复杂的概念包装，把最硬核的文件处理、后台托管和本地沙盒安全做到极致。</p>
+        <span class="section-tag">MCP DYNAMIC INJECTION</span>
+        <h2 class="section-title">提示词 MCP 动态注入：攻克空载 Token 浪费</h2>
+        <p class="section-desc">传统 Agent 常驻加载工具定义极其浪费 Token。我们采用按需动态注入方案，让 API 资费与延迟直线下降 60% 以上。</p>
       </div>
 
-      <div class="features-grid">
-        <div class="feature-card frosted-card">
-          <div class="feature-icon-wrapper">💬</div>
-          <h3 class="feature-card-title">微信与飞书双端托管</h3>
-          <p class="feature-card-text">
-            集成官方合规的微信 iLink SDK 与飞书网关服务。扫码后，将个人号/群聊变成 AI 答复代理。24H 后台静默流式运行，屏蔽无关信息打扰。
+      <div class="arch-layout-grid" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <div class="tech-text-block" style="text-align: left;">
+          <h3 class="integration-main-title" style="font-size: 22px; margin-bottom: 16px;">🔌 按需动态注入思想与 Schema 懒连接</h3>
+          <p class="integration-desc-p" style="line-height: 1.7; font-size: var(--text-body-sm);">
+            <strong>痛点分析：</strong> 传统智能体（Agent）通常在冷启动时将所有注册的外部工具 Schema 一次性打包注入大模型上下文中。当外部挂载数十个 MCP
+            工具时，这会产生庞大且无谓的<strong>常驻空载 Token 浪费</strong>。
+            <br><br>
+            <strong>解决方案：</strong> AgentPet 独创了动态按需注入机制：
+            <br>
+            • <strong>静态零占用：</strong> 日常会话时完全不向大模型声明任何外部 MCP 工具的定义，保持极度轻量化的上下文空间。
+            <br>
+            • <strong>意图触发懒连接：</strong> 仅当大模型在对话中识别到需要执行特定复杂意图（如查询本地 12306、绘制可视化图表等）时，主进程才瞬间与对应 MCP 服务建立 SSE 握手连接，并将该工具
+            Schema <strong>动态注入</strong>当前会话上下文。
+            <br>
+            • <strong>动态垃圾回收：</strong> 执行结束后自动裁切精简工具描述，避免冗余 Schema 在长对话中重复产生 Token 开销。
           </p>
         </div>
 
-        <div class="feature-card frosted-card">
-          <div class="feature-icon-wrapper">🛡️</div>
-          <h3 class="feature-card-title">命令执行安全沙盒</h3>
-          <p class="feature-card-text">
-            首创安全审批沙盒。AI 助理分析本地项目或执行命令前，强行识别拦截破坏性指令（如 rm -rf、删库等），弹出气泡授权审批，安全零隐患。
-          </p>
-        </div>
-
-        <div class="feature-card frosted-card">
-          <div class="feature-icon-wrapper">📂</div>
-          <h3 class="feature-card-title">多格式文档一键拖拽解析</h3>
-          <p class="feature-card-text">
-            支持 Word (mammoth/docx)、Excel (exceljs)、PDF (pdfkit/pdf-parse) 文件一键拖拽至宠物窗口。AI 本地自动提炼数据报表及要点总结。
-          </p>
-        </div>
-
-        <div class="feature-card frosted-card">
-          <div class="feature-icon-wrapper">🎭</div>
-          <h3 class="feature-card-title">Live2D/3D 模型热拔插</h3>
-          <p class="feature-card-text">
-            采用 PixiJS 与 ThreeJS 双核心渲染。支持一键导入外部 Live2D（`.model3.json`）及 3D 模型，支持设定语言风格，让您的桌面宠物栩栩如生。
-          </p>
-        </div>
-
-        <div class="feature-card frosted-card">
-          <div class="feature-icon-wrapper">💾</div>
-          <h3 class="feature-card-title">本地存储与一键数据迁移</h3>
-          <p class="feature-card-text">
-            聊天历史与技能包完全保存在本地 SQLite。支持自定义存储路径并一键迁移至您的特定盘符，数据与隐私完全掌控在您的物理硬盘中。
-          </p>
+        <!-- MCP 截图与 GIF 展示卡片 (调用mcp.gif + 348 + 884 Tab 切换) -->
+        <div class="mcp-tabs-container">
+          <div class="mcp-tabs-header">
+            <button class="mcp-tab-btn active" data-tab="mcp-tab1">动态调用演示 (GIF)</button>
+            <button class="mcp-tab-btn" data-tab="mcp-tab3">MCP 列表</button>
+          </div>
+          <div class="mcp-tab-content">
+            <div class="mcp-tab-pane active" id="mcp-tab1">
+              <div class="screenshot-container">
+                <img src="images/调用mcp.gif" alt="大模型动态调用 MCP 工具演示" class="screenshot-img">
+                <div class="screenshot-caption">动态演示：LLM 动态识别意图并按需注入调用 MCP 远程工具</div>
+              </div>
+            </div>
+            <div class="mcp-tab-pane" id="mcp-tab3">
+              <div class="screenshot-container">
+                <img src="images/884_1x_shots_so.png" alt="MCP 列表滚动展示" class="screenshot-img">
+                <div class="screenshot-caption">图 1.2B：通过 MCP 协议动态注入的可视化图表与数据分析工具列表</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- 底层技术架构栈列表 (Architecture & Tech Stack) -->
-    <section class="tech-stack-section" id="tech-stack">
+    <!-- 本地工具支撑 Section (Local Tools Support) -->
+    <section class="features-section" id="local-tools"
+      style="border-top: 1px solid rgba(0, 0, 0, 0.05); padding-top: 80px; padding-bottom: 80px;">
+      <div class="gradient-glow"></div>
       <div class="section-header">
-        <span class="section-tag">TECHNOLOGY STACK</span>
-        <h2 class="section-title">技术框架：底层硬核技术架构</h2>
-        <p class="section-desc">产品的高效与本地安全，源于底层极其强大的技术组件库。我们毫无保留地向开发者公开核心技术框架栈：</p>
+        <span class="section-tag">LOCAL TOOLS SUPPORT</span>
+        <h2 class="section-title">本地工具支撑：构建更智能的应用</h2>
+        <p class="section-desc">深度整合本地系统环境，让大模型具备直接操作文件与资源的执行力，将自然语言转化为桌面级智能助理的生产力。</p>
       </div>
 
-      <div class="tech-stack-grid">
-        <div class="tech-card frosted-card">
-          <h3 class="tech-card-title">系统内核与打包</h3>
-          <ul class="tech-list">
-            <li><strong>Electron 39.2</strong>：跨平台桌面框架封装层</li>
-            <li><strong>React 19.2 + TS</strong>：前端交互界面开发</li>
-            <li><strong>Vite 5.0 + Less</strong>：极速编译构建与样式管理</li>
-            <li><strong>Electron-builder</strong>：一键打包 Win/Mac/Linux 客户端</li>
-          </ul>
+      <div class="arch-layout-grid" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <div class="tech-text-block" style="text-align: left;">
+          <h3 class="integration-main-title" style="font-size: 22px; margin-bottom: 16px;">🛠️ 本地文件解析与智能编辑</h3>
+          <p class="integration-desc-p" style="line-height: 1.7; font-size: var(--text-body-sm);">
+            <strong>原生能力调用：</strong> 基于 Electron 主进程的 Node.js 原生权限，打破传统 Web 智能体无法触达本地的壁垒。
+            <br><br>
+            <strong>无缝办公协助：</strong> AI 可根据您的自然语言指令，自动在本地进行代码检索、文件修改或文本创作，让繁杂的文书与开发工作轻松完成。
+            <br><br>
+            <strong>安全隔离审计：</strong> 所有本地写操作均经过安全沙盒防爆与用户显式授权确认，在享受极客级智能的同时确保您的核心数据万无一失。
+          </p>
         </div>
 
-        <div class="tech-card frosted-card">
-          <h3 class="tech-card-title">桌面宠物渲染与连接</h3>
-          <ul class="tech-list">
-            <li><strong>Pixi.js v6</strong>：高性能桌面 Live2D 宠物挂件骨骼渲染</li>
-            <li><strong>Pixi-live2d-display</strong>：外部 Live2D 形象库加载解析</li>
-            <li><strong>Three.js 0.184</strong>：3D 宠物形象与桌面立体场景支持</li>
-            <li><strong>MCP SDK 1.29</strong>：Model Context Protocol 规范连接</li>
-          </ul>
-        </div>
-
-        <div class="tech-card frosted-card">
-          <h3 class="tech-card-title">多格式文档解析预览</h3>
-          <ul class="tech-list">
-            <li><strong>ExcelJS + XLSX</strong>：Excel 电子数据表解析与写引擎</li>
-            <li><strong>Mammoth + Docx-preview</strong>：Word 文档提取与本地渲染</li>
-            <li><strong>PDFkit + PDF-parse</strong>：PDF 文件生成、解析与要点提炼</li>
-            <li><strong>PapaParse + JSZip</strong>：CSV 处理与压缩技能包解压</li>
-          </ul>
-        </div>
-
-        <div class="tech-card frosted-card">
-          <h3 class="tech-card-title">持久化与微信集成</h3>
-          <ul class="tech-list">
-            <li><strong>Better-SQLite3</strong>：高性能本地 SQL 数据库聊天持久化</li>
-            <li><strong>openilink-sdk-node</strong>：微信合规官方 iLink 连接 SDK</li>
-            <li><strong>ws (WebSocket)</strong>：主进程与桌面挂件进程高速双向通信</li>
-            <li><strong>命令防爆沙盒</strong>：本地自研命令过滤拦截审批机制</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Canvas 模型调用与消息量折线图 -->
-      <div class="chart-box-tech-outer frosted-card">
-        <div class="chart-header-tech">
-          <h3 class="chart-title-tech">大模型 Token 消耗及自动答复频次度量</h3>
-          <span class="chart-legend-tech"><span class="legend-dot mint"></span> API 消耗 (K Token) <span
-              class="legend-dot blue"></span> 微信自动答复 (条)</span>
-        </div>
-        <div class="canvas-container-tech frosted-card-inner">
-          <canvas id="techResourceChart" width="600" height="200"></canvas>
+        <div class="screenshot-container">
+          <img src="images/修改文件.gif" alt="本地工具支撑，构建更智能的应用" class="screenshot-img">
+          <div class="screenshot-caption">动态演示：AgentPet 利用本地工具自动修改本地代码文件</div>
         </div>
       </div>
     </section>
 
-    <!-- 集成服务 (Integration Service) -->
-    <section class="integration-section" id="integration-service">
+    <!-- 3. Live2D + TTS 拟真注入 Section (Live2D & TTS Injection) -->
+    <section class="features-section" id="live2d-tts"
+      style="border-top: 1px solid rgba(0, 0, 0, 0.05); padding-top: 80px; padding-bottom: 80px;">
+      <div class="gradient-glow"></div>
       <div class="section-header">
-        <span class="section-tag">WECHAT INTEGRATION</span>
-        <h2 class="section-title">集成服务：合规微信托管技术</h2>
-        <p class="section-desc">深度解析 AgentPet 微信托管的核心机制：使用微信合规的官方 iLink 连接技术，打通大模型本地流式回复，实现高安全零封号风险的企业级部署。</p>
+        <span class="section-tag">LIVE2D + TTS INJECTION</span>
+        <h2 class="section-title">Live2D 与 TTS 注入：物理鼠标穿透与快捷会话</h2>
+        <p class="section-desc">支持一键热插拔 Live2D 形象，运用本地声学分析器提取音量振幅，为用户带来桌面极速流式会话体验。</p>
       </div>
 
-      <div class="integration-grid">
-        <div class="integration-tech-info frosted-card">
-          <h3 class="integration-main-title">🛡️ 微信集成核心技术解析</h3>
-          <p class="integration-desc-p">不同于市面上违规且极易被封号的网页版协议或注入式破解方案，AgentPet 采用了绝对安全的官方技术路线：</p>
-
-          <div class="tech-item-row">
-            <div class="item-icon">⚡</div>
-            <div class="item-body">
-              <h4>微信合规官方 iLink SDK</h4>
-              <p>系统核心通过微信官方提供的 Node 平台连接器 <code>@openilink/openilink-sdk-node</code>
-                直连，所有数据通过微信专属加密管道传输，绝不篡改客户端，保障您的账号绝对安全。</p>
-            </div>
+      <div class="arch-layout-grid" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <!-- 快捷会话 GIF 动态演示与截图并列 -->
+        <div style="display: flex; flex-direction: column; gap: 20px;">
+          <div class="screenshot-container">
+            <img src="images/快捷会话.gif" alt="桌宠快捷对话交互演示" class="screenshot-img">
+            <div class="screenshot-caption">动态演示：桌宠快捷会话与流式对话交互</div>
           </div>
-
-          <div class="tech-item-row">
-            <div class="item-icon">💾</div>
-            <div class="item-body">
-              <h4>Better-SQLite3 本地存储与多维记忆</h4>
-              <p>微信接收到的所有聊天记录、上下文关联信息及个人隐私配置均采用本地数据库持久化，坚守本地化原则，数据和控制权完全归属用户物理硬盘。</p>
-            </div>
-          </div>
-
-          <div class="tech-item-row">
-            <div class="item-icon">🔒</div>
-            <div class="item-body">
-              <h4>防爆指令沙盒双重过滤</h4>
-              <p>微信远程执行命令支持多级指令阻断审批。若有高危指令试图远程修改或破坏您的项目，主进程安全沙盒立即将其锁定并弹窗审批，杜绝被恶意指令"删库"。</p>
-            </div>
+          <div class="screenshot-container">
+            <img src="images/190_1x_shots_so.png" alt="Live2D 虚拟体设置与配置界面" class="screenshot-img">
+            <div class="screenshot-caption">图 1.3：客户端系统设置中的虚拟体与口型/语音合成库配置控制台</div>
           </div>
         </div>
 
-        <!-- 仿真微信托管控制台 -->
-        <div class="console-box frosted-card">
-          <div class="console-panel-header">
-            <div class="window-dots">
-              <span class="dot red"></span>
-              <span class="dot yellow"></span>
-              <span class="dot green"></span>
-            </div>
-            <div class="console-panel-title">wechatBot.ts - 微信 iLink 协议运行日志</div>
-            <div class="console-status">
-              <span class="status-pulse"></span> 协议通信在线
-            </div>
-          </div>
-          <div class="console-terminal frosted-card-inner" id="terminalLogs">
-            <div class="log-line sys">[14:10:02] [SYS] WeChat Bot 托管网关服务初始化成功...</div>
-            <div class="log-line sys">[14:10:05] [SYS] 微信扫码成功，设备 (iLink-Bot-Mao) 已绑定在线。</div>
-            <div class="log-line sys">[14:10:08] [SYS] 当前自动回复大模型配置：Gemini 3.5 Flash (温度: 0.7)</div>
-          </div>
-          <div class="console-panel-footer">
-            <span class="footer-stat">累计接收消息: <strong id="recCount">14</strong> 条</span>
-            <span class="footer-stat">累计 AI 答复: <strong id="sendCount">14</strong> 条</span>
-            <button class="btn btn-secondary btn-sm" id="clearConsoleBtn">清空控制台</button>
-          </div>
+        <div class="tech-text-block" style="text-align: left;">
+          <h3 class="integration-main-title" style="font-size: 22px; margin-bottom: 16px;">🎭 智能鼠标穿透与桌宠快捷会话交互</h3>
+          <p class="integration-desc-p" style="line-height: 1.7; font-size: var(--text-body-sm);">
+            <strong>WebGL 鼠标穿透：</strong> 传统透明 Electron 挂件即使在完全透明的区域也会拦截鼠标点击。本项目通过 WebGL <code>gl.readPixels</code>
+            实时读取鼠标指针下像素的 RGBA <code>Alpha 通道值</code>。若 <code>Alpha > 10</code>，判定为触碰角色身体；否则开启鼠标穿透，彻底解决背景桌面操作被遮挡的问题。
+            <br><br>
+            <strong>桌宠快捷会话：</strong> 大模型生成流式答复后，主进程结合 <code>node-edge-tts</code> 本地语音合成与 Web Audio 物理频域分析器，实时驱动 Live2D
+            形象的骨骼参数，提供高度逼真的即时对话反馈。
+            <br><br>
+            <strong>资源自定义映射：</strong> 采用主进程注册的自定义 <code>live2d://</code> 协议读取资源，完美避开本地跨域 CORS 限制。
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- 快速体验 (Quick Experience) -->
-    <section class="quick-experience-section" id="quick-experience">
+    <!-- 4. 第三方通讯集成 Section (Third-party Communications) -->
+    <section class="features-section" id="communications"
+      style="background: var(--color-canvas); border-top: 1px solid rgba(0, 0, 0, 0.05); padding-top: 80px; padding-bottom: 80px;">
+      <div class="gradient-glow-strong"></div>
       <div class="section-header">
-        <span class="section-tag">QUICK EXPERIENCE</span>
-        <h2 class="section-title">快速体验与跨平台下载</h2>
-        <p class="section-desc">您可以在下方浏览器交互式沙盒中，模拟大模型状态并测试安全指令审批；或者直接下载各平台客户端安装包。</p>
+        <span class="section-tag">COMMUNICATIONS INTEGRATION</span>
+        <h2 class="section-title">第三方通讯集成</h2>
+        <p class="section-desc">集成微信官方合规的 iLink 平台连接器，支持 24H 静默流式答复，并具备富媒体 CDN 物理加密上传机制；同时架构已预留多平台标准化扩展能力。</p>
       </div>
 
-      <!-- 可视化交互沙盒模拟客户端 -->
-      <div class="sandbox-grid">
-        <div class="config-panel-card frosted-card">
-          <h3 class="panel-main-title">⚙️ 大模型与安全配置</h3>
-          <p class="panel-desc">对应客户端"SettingsPage"的模型设置与命令审批开关</p>
-
-          <div class="form-group-tech">
-            <label class="tech-label">API 提供商 (LLM Provider)</label>
-            <select id="llmProvider" class="soft-input-tech">
-              <option value="gemini">Gemini 3.5 (推荐默认)</option>
-              <option value="deepseek">DeepSeek R1</option>
-              <option value="openai">OpenAI GPT-4o</option>
-              <option value="ollama">Ollama (本地运行)</option>
-            </select>
-          </div>
-
-          <div class="form-group-tech">
-            <label class="tech-label">API 密钥 (API Key)</label>
-            <div class="input-with-btn">
-              <input type="password" id="apiKey" value="••••••••••••••••••••••••" class="soft-input-tech" readonly>
-              <button class="btn btn-secondary btn-sm" id="testConnBtn">🔌 测试连接</button>
-            </div>
-            <span class="input-hint" id="connStatus">连通状态：就绪，等待测试</span>
-          </div>
-
-          <div class="form-group-tech border-box-tech">
-            <div class="switch-row">
-              <div class="switch-info">
-                <span class="sw-title">终端命令安全沙盒模式</span>
-                <span class="sw-desc">阻止破坏性脚本，指令本地运行前要求手动确认。</span>
-              </div>
-              <div class="toggle-switch">
-                <input type="checkbox" id="securitySandboxToggle" checked>
-                <label for="securitySandboxToggle" class="toggle-slider-tech"></label>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group-tech">
-            <label class="tech-label">Live2D 虚拟形象库</label>
-            <div class="mascot-select-buttons">
-              <button class="btn btn-secondary btn-sm active" id="mascotStyleMao">🎭 Mao 医师形象</button>
-              <button class="btn btn-secondary btn-sm" id="mascotStyleCool">🕶️ Mao 酷炫形象</button>
-              <button class="btn btn-secondary btn-sm" id="injectRiskBtn">🔥 注入高危指令测试</button>
-            </div>
-          </div>
+      <div class="arch-layout-grid" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <div class="tech-text-block" style="text-align: left;">
+          <h3 class="integration-main-title" style="font-size: 22px; margin-bottom: 16px;">💬 微信官方 iLink 通道与富媒体加密直传</h3>
+          <p class="integration-desc-p" style="line-height: 1.7; font-size: var(--text-body-sm);">
+            <strong>微信合规官方 iLink：</strong> 不同于市面上易被封号的网页版协议或注入式破解方案，AgentPet 主进程直连微信官方 Node 服务平台连接器
+            <code>@openilink/openilink-sdk-node</code>，保证托管安全零风险。
+            <br><br>
+            <strong>腾讯 CDN 封包加密算法：</strong> 为了在微信中发送智能体生成的图片、截图或表格，文件在本地首先通过随机 16 字节密钥的 <code>AES-128-ECB</code>
+            进行物理加密，再通过 HTTP POST 直传至腾讯 CDN 服务器，保障了富媒体信息的合规分发。
+            <br><br>
+            <strong>多维记忆存储：</strong> 所有通过微信和飞书托管拉取并代答的消息记录均采用本地 SQLite 本地持久化，隐私数据安全可控。
+            <br><br>
+            <strong>后续多平台生态接入：</strong> 核心通信网关已完成标准化抽象，未来版本将陆续无缝接入飞书、钉钉、企业微信及 Discord 等主流通讯协作平台，打造跨生态的全天候智能助理。
+          </p>
         </div>
 
-        <!-- 右侧桌面宠物交互与安全拦截弹窗 -->
-        <div class="mascot-chat-panel frosted-card">
-          <div class="client-title-header">
-            <div class="client-dot red"></div>
-            <div class="client-dot yellow"></div>
-            <div class="client-dot green"></div>
-            <span class="header-client-name">Mao Mascot Interactive Window</span>
-          </div>
-
-          <div class="mascot-display-box frosted-card-inner">
-            <div class="simulated-mascot" id="mascotGraphic">
-              <div class="m-ears"></div>
-              <div class="m-eyes"><span class="m-eye"></span><span class="m-eye"></span></div>
-              <div class="m-blush" id="mascotBlush"></div>
-              <div class="m-glasses" id="mascotGlasses"></div>
-              <div class="m-mouth"></div>
-            </div>
-
-            <div class="mascot-speech-bubble frosted-card" id="mascotBubble">
-              你好呀！我是你的桌面 AI 助手 Mao。我已经接通了本地 SQLite 数据库，安全沙盒已启动，请问需要我为您做些什么？
-            </div>
-
-            <div class="security-approval-modal frosted-card" id="securityApprovalModal" style="display: none;">
-              <div class="modal-alert-header">
-                <span class="warn-icon">⚠️</span>
-                <strong>终端指令执行安全审批</strong>
-              </div>
-              <p class="modal-alert-desc">AI 尝试在您的电脑上执行一条可能具有破坏性的 Shell 脚本：</p>
-              <div class="script-box-tech" id="sandboxCommandText">
-                $ rm -rf d:/Electron/AgentPet/node_modules
-              </div>
-              <div class="modal-alert-actions">
-                <button class="btn btn-secondary btn-sm" id="sandboxRejectBtn">🚫 安全拦截(推荐)</button>
-                <button class="btn btn-primary btn-sm" id="sandboxAllowBtn"
-                  style="background-color: var(--color-red); color: #fff;">⚠️ 允许执行</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="mascot-chat-input-bar">
-            <input type="text" id="mascotChatInput" placeholder="输入你想与 Mao 交互的文字（如：帮我解析 Excel，或者 运行命令）..."
-              class="soft-input-tech-chat">
-            <button class="btn btn-primary" id="mascotChatSendBtn">发送</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- 客户端跨平台下载中心 -->
-      <div class="download-card-soft frosted-card" style="margin-top: 50px; position: relative; overflow: hidden;">
-        <!-- 光谱渐变环境光晕 -->
-        <div class="gradient-glow-strong" style="opacity: 0.18;"></div>
-        <h2 class="download-title">立即获取 AgentPet 桌面 AI 助手</h2>
-        <p class="download-desc">让有边界的桌面智能守护您的工作流与数据安全。跨平台适配支持，一键安装。</p>
-
-        <div class="download-buttons-group">
-          <div class="dl-platform-btn frosted-card" onclick="alert('开始下载 Windows 客户端 (.exe)...')">
-            <span class="pf-icon">🪟</span>
-            <div class="pf-text">
-              <span class="name">下载 Windows x64</span>
-              <span class="desc">支持 Win10 / Win11 (0.97.1.exe)</span>
-            </div>
-          </div>
-          <div class="dl-platform-btn frosted-card" onclick="alert('开始下载 macOS 客户端 (.dmg)...')">
-            <span class="pf-icon">🍏</span>
-            <div class="pf-text">
-              <span class="name">下载 macOS Client</span>
-              <span class="desc">支持 Intel & M系列 (.dmg)</span>
-            </div>
-          </div>
-          <div class="dl-platform-btn frosted-card" onclick="alert('开始下载 Linux 客户端 (.deb)...')">
-            <span class="pf-icon">🐧</span>
-            <div class="pf-text">
-              <span class="name">下载 Linux x64</span>
-              <span class="desc">支持 Ubuntu/Debian (.deb)</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="download-action-btn-container">
-          <button class="btn btn-primary btn-lg">下载最新的跨平台安装包 (v1.0.0)</button>
+        <!-- 微信托管配置截图 -->
+        <div class="screenshot-container">
+          <img src="images/240_1x_shots_so.png" alt="微信 iLink 客服托管客户端" class="screenshot-img">
+          <div class="screenshot-caption">图 1.4：客户端微信托管控制台：支持扫码绑定及活跃会话监控</div>
         </div>
       </div>
     </section>
+
+    <!-- 5. 四层记忆设计 Section (Four-layer Memory) -->
+    <section class="features-section" id="memory-design"
+      style="border-top: 1px solid rgba(0, 0, 0, 0.05); padding-top: 80px; padding-bottom: 80px;">
+      <div class="gradient-glow"></div>
+      <div class="section-header">
+        <span class="section-tag">FOUR-LAYER MEMORY</span>
+        <h2 class="section-title">自研四层记忆设计：数据本地化长期经验沉淀</h2>
+        <p class="section-desc">基于 Better-SQLite3 高性能本地数据库，构建四层记忆沉淀机制，保障智能体对上下文及长期偏好的精准检索。</p>
+      </div>
+
+      <div class="arch-layout-grid" style="max-width: 1200px; margin: 0 auto; padding: 0 20px;">
+        <!-- 左侧：正面四层记忆塔图形组件 -->
+        <div class="memory-tower-container">
+          <div class="memory-tower">
+            <!-- 第一层：SQLite 本地存储 -->
+            <div class="memory-layer l1">
+              <div class="layer-title-row">
+                <span class="layer-title">第一层：SQLite 本地存储 (SQLite Storage)</span>
+                <span class="layer-tag">SQLite 本地存储</span>
+              </div>
+              <p class="layer-desc">基于 Better-SQLite3 高性能本地存储，坚守数据隐私本地化，将对话上下文及核心状态物理留存于用户物理硬盘。</p>
+            </div>
+            <!-- 第二层：会话总结经验沉淀 -->
+            <div class="memory-layer l2">
+              <div class="layer-title-row">
+                <span class="layer-title">第二层：触发会话论述总结 (Session Summarization)</span>
+                <span class="layer-tag">沉淀经验</span>
+              </div>
+              <p class="layer-desc">在会话切换或空闲时，触发智能论述归纳，提炼当前对话的核心经验、结论与未完待续的任务线，写入本地记忆链。</p>
+            </div>
+            <!-- 第三层：定时生成任务画像 -->
+            <div class="memory-layer l3">
+              <div class="layer-title-row">
+                <span class="layer-title">第三层：定时生成任务画像 (Task Profiling)</span>
+                <span class="layer-tag">定时任务画像</span>
+              </div>
+              <p class="layer-desc">后台定时分析多维多轮对话历史，进行动态画像重构，定时生成用户特征画像、称呼喜好、执行频率与协作任务档案。</p>
+            </div>
+            <!-- 第四层：混合检索关联记忆 -->
+            <div class="memory-layer l4">
+              <div class="layer-title-row">
+                <span class="layer-title">第四层：混合检索关联记忆 (Wiki Hybrid Retrieval)</span>
+                <span class="layer-tag">基于 Wiki 思想</span>
+              </div>
+              <p class="layer-desc">结合向量特征与传统全文索引的混合检索，模拟 Wiki 知识关联网，自动进行历史上下文与知识的语义关联检索，达到快速回忆。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右侧：文字说明（移除依赖表） -->
+        <div class="tech-text-block"
+          style="text-align: left; display: flex; flex-direction: column; justify-content: center;">
+          <h3 class="integration-main-title" style="font-size: 22px; margin-bottom: 20px;">💾 自研四层记忆设计与本地隐私坚守</h3>
+          <p class="integration-desc-p" style="line-height: 1.8; font-size: var(--text-body-sm); margin-bottom: 20px;">
+            <strong>坚守本地化隐私：</strong> AgentPet 坚信用户的隐私数据归用户所有。所有的聊天记录、四层记忆画像、本地文档提取产物及微信聊天代理数据，全部安全存储于本地的高性能 SQLite
+            中。您可以一键导出或自定义特定盘符进行物理数据迁移。
+            <br><br>
+            <strong>四层记忆优势：</strong>
+            不同于传统 Agent 随用随扔的上下文缓存，本系统通过由浅入深的 SQLite 物理层递进，实现了在零云端泄露的前提下，大模型对长期偏好和过去复杂任务线的精准“回忆”与持续经验积累。
+          </p>
+        </div>
+      </div>
+    </section>
+
+
 
   </main>
 
@@ -440,20 +437,22 @@
     <div class="footer-container">
       <p class="footer-copy">© 2026 AgentPet 开源桌面 AI 智能助理团队. 本网页为项目真实功能展示，保留所有权利。</p>
       <div class="footer-links">
-        <a href="#features">功能介绍</a>
+        <a href="#architecture">系统架构</a>
         <span class="footer-dot">·</span>
-        <a href="#tech-stack">技术框架</a>
+        <a href="#mcp-injection">MCP注入</a>
         <span class="footer-dot">·</span>
-        <a href="#integration-service">集成服务</a>
+        <a href="#local-tools">本地工具</a>
         <span class="footer-dot">·</span>
-        <a href="#quick-experience">快速体验</a>
+        <a href="#live2d-tts">快捷会话</a>
         <span class="footer-dot">·</span>
-        <a href="https://github.com" target="_blank">GitHub 仓库</a>
+        <a href="#communications">通讯集成</a>
+        <span class="footer-dot">·</span>
+        <a href="#memory-design">四层记忆</a>
       </div>
     </div>
   </footer>
 
   <script src="app.js"></script>
-</body>
+  </body>
 
 </html>
